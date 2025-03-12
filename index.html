@@ -55,7 +55,38 @@
     </style>
 </head>
 <body>
-    <div class="container" id="tela5">
+    <div class="container" id="tela1">
+        <h1>Qual é a rotina de skincare <span class="destaque">ideal</span> para a sua pele?</h1>
+        <p>Faça o teste agora, descubra seu tipo de pele e a rotina ideal para ela! É rapidinho!</p>
+        <button class="botao" onclick="mostrarTela(2)">Iniciar</button>
+    </div>
+
+    <div class="container" id="tela2" style="display: none;">
+        <h2>Qual nome devemos te chamar?</h2>
+        <input type="text" id="nome" placeholder="Digite seu nome">
+        <br><br>
+        <button class="botao" onclick="mostrarTela(3)">Próximo</button>
+    </div>
+
+    <div class="container" id="tela3" style="display: none;">
+        <h2>Qual a sua idade?</h2>
+        <label><input type="radio" name="idade"> Menos de 18 anos</label><br>
+        <label><input type="radio" name="idade"> 18 a 24 anos</label><br>
+        <label><input type="radio" name="idade"> 25 a 29 anos</label><br>
+        <label><input type="radio" name="idade"> 30 a 39 anos</label><br>
+        <label><input type="radio" name="idade"> 40 a 49 anos</label><br>
+        <label><input type="radio" name="idade"> 50 a 59 anos</label><br>
+        <label><input type="radio" name="idade"> 60+</label><br><br>
+        <button class="botao" onclick="mostrarTela(4)">Próximo</button>
+    </div>
+
+    <div class="container" id="tela4" style="display: none;">
+        <h2>Estamos próximos de identificar o seu tipo de pele</h2>
+        <p>Dica: Para descobrir seu tipo de pele, lave o rosto com um sabonete neutro e espere 30 minutos sem aplicar nenhum produto...</p>
+        <button class="botao" onclick="mostrarTela(5)">Próximo</button>
+    </div>
+
+    <div class="container" id="tela5" style="display: none;">
         <h2>Identifique seu tipo de pele</h2>
         <div class="opcao"><img src="imagens/imagem1.jpg"><label><input type="radio" name="pele" value="normal" onclick="atualizarDesafios()"> Normal</label></div>
         <div class="opcao"><img src="imagens/imagem2.jpg"><label><input type="radio" name="pele" value="seca" onclick="atualizarDesafios()"> Seca</label></div>
@@ -72,45 +103,28 @@
     </div>
 
     <script>
-        function atualizarDesafios() {
-            const desafios = {
-                normal: ["rugas", "manchas", "textura", "olheiras", "iniciar"],
-                seca: ["rugas", "manchas", "ressecamento", "textura", "olheiras", "iniciar"],
-                oleosa: ["acne", "oleosidade", "rugas", "manchas", "poros", "textura", "olheiras", "iniciar"],
-                mista: ["oleosidade", "rugas", "manchas", "poros", "textura", "olheiras", "iniciar"],
-                sensivel: ["rugas", "rosacea", "manchas", "poros", "textura", "olheiras", "iniciar"]
-            };
-            
-            const imagens = {
-                rugas: "imagem8.jpg",
-                manchas: "imagem10.jpg",
-                oleosidade: "imagem3.jpg",
-                acne: "imagem6.jpg",
-                ressecamento: "imagem12.jpg",
-                poros: "imagem13.jpg",
-                textura: "imagem14.jpg",
-                olheiras: "imagem15.jpg",
-                iniciar: "imagem17.jpg",
-                rosacea: "imagem5.jpg"
-            };
-
-            const tipoPele = document.querySelector('input[name="pele"]:checked')?.value;
-            const opcoesDesafio = document.getElementById("opcoesDesafio");
-            opcoesDesafio.innerHTML = "";
-
-            if (tipoPele && desafios[tipoPele]) {
-                desafios[tipoPele].forEach(desafio => {
-                    const div = document.createElement("div");
-                    div.classList.add("opcao");
-                    div.innerHTML = `<img src='imagens/${imagens[desafio]}'><label><input type='radio' name='desafio' value='${desafio}'> ${desafio.replace("_", " ")}</label>`;
-                    opcoesDesafio.appendChild(div);
-                });
+        function mostrarTela(tela) {
+            for (let i = 1; i <= 7; i++) {
+                document.getElementById('tela' + i).style.display = 'none';
             }
+            document.getElementById('tela' + tela).style.display = 'block';
         }
 
-        function mostrarTela(tela) {
-            document.getElementById('tela5').style.display = 'none';
-            document.getElementById('tela6').style.display = 'block';
+        function atualizarDesafios() {
+            const tipoPele = document.querySelector('input[name="pele"]:checked')?.value;
+            const desafios = {
+                normal: ["rugas", "manchas", "textura", "olheiras", "iniciar"],
+                seca: ["rugas", "manchas", "textura", "olheiras", "iniciar"],
+                oleosa: ["oleosidade", "manchas", "textura", "olheiras", "iniciar"],
+                mista: ["oleosidade", "manchas", "textura", "olheiras", "iniciar"],
+                sensivel: ["vermelhidão", "manchas", "textura", "olheiras", "iniciar"]
+            };
+            
+            let opcoesHTML = "";
+            desafios[tipoPele].forEach(desafio => {
+                opcoesHTML += `<div class='opcao'><label><input type='radio' name='desafio' value='${desafio}'> ${desafio}</label></div>`;
+            });
+            document.getElementById("opcoesDesafio").innerHTML = opcoesHTML;
         }
     </script>
 </body>
