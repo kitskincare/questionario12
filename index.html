@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -82,7 +82,9 @@
 
     <div class="container" id="tela4" style="display: none;">
         <h2>Estamos próximos de identificar o seu tipo de pele</h2>
-        <p>Dica: Para descobrir seu tipo de pele, lave o rosto com um sabonete neutro e espere 30 minutos sem aplicar nenhum produto...</p>
+        <p>Dica: Para descobrir seu tipo de pele, lave o rosto com um sabonete neutro e espere 30 minutos sem aplicar nenhum produto. Observe como a
+pele reage: se ficar brilhante, é oleosa; se repuxar, é seca; se houver brilho na zona T e ressecamento nas laterais, é mista; e se houver vermelhidão ou
+irritação, é sensível.</p>
         <button class="botao" onclick="mostrarTela(5)">Próximo</button>
     </div>
 
@@ -98,8 +100,15 @@
 
     <div class="container" id="tela6" style="display: none;">
         <h2>Qual o desafio da sua pele?</h2>
-        <div id="opcoesDesafio"></div>
+        <div id="opcoesDesafio">
+            <!-- Desafios serão atualizados aqui dinamicamente -->
+        </div>
         <button class="botao" onclick="finalizar()">Finalizar</button>
+    </div>
+
+    <div class="container" id="tela7" style="display: none;">
+        <h2>Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade</h2>
+        <div id="Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade"></div>
     </div>
 
     <script>
@@ -112,20 +121,109 @@
 
         function atualizarDesafios() {
             const tipoPele = document.querySelector('input[name="pele"]:checked')?.value;
+            const opcoesDesafio = document.getElementById('opcoesDesafio');
+            opcoesDesafio.innerHTML = '';
+
             const desafios = {
-                normal: ["rugas", "manchas", "textura", "olheiras", "iniciar"],
-                seca: ["rugas", "manchas", "textura", "olheiras", "iniciar"],
-                oleosa: ["oleosidade", "manchas", "textura", "olheiras", "iniciar"],
-                mista: ["oleosidade", "manchas", "textura", "olheiras", "iniciar"],
-                sensivel: ["vermelhidão", "manchas", "textura", "olheiras", "iniciar"]
+                normal: [
+                    {label: 'Rugas / Linhas de expressão / Flacidez do rosto', img: 'imagens/imagem8.jpg'},
+                    {label: 'Manchas escuras / Melasma / Cicatrizes de acne', img: 'imagens/imagem10.jpg'},
+                    {label: 'Textura irregular', img: 'imagens/imagem14.jpg'},
+                    {label: 'Olheiras / Bolsas abaixo dos olhos', img: 'imagens/imagem15.jpg'},
+                    {label: 'Iniciar / Manter os cuidados com a pele', img: 'imagens/imagem17.jpg'}
+                ],
+                seca: [
+                    {label: 'Rugas / Linhas de expressão / Flacidez do rosto', img: 'imagens/imagem8.jpg'},
+                    {label: 'Manchas escuras / Melasma / Cicatrizes de acne', img: 'imagens/imagem10.jpg'},
+                    {label: 'Ressecamento / descamação', img: 'imagens/imagem12.jpg'},
+                    {label: 'Textura irregular', img: 'imagens/imagem14.jpg'},
+                    {label: 'Olheiras / Bolsas abaixo dos olhos', img: 'imagens/imagem15.jpg'},
+                    {label: 'Iniciar / Manter os cuidados com a pele', img: 'imagens/imagem17.jpg'}
+                ],
+                oleosa: [
+                    {label: 'Acne', img: 'imagens/imagem6.jpg'},
+                    {label: 'Oleosidade/excesso de brilho', img: 'imagens/imagem3.jpg'},
+                    {label: 'Rugas / Linhas de expressão / Flacidez do rosto', img: 'imagens/imagem8.jpg'},
+                    {label: 'Manchas escuras / Melasma / Cicatrizes de acne', img: 'imagens/imagem10.jpg'},
+                    {label: 'Poros dilatados', img: 'imagens/imagem13.jpg'},
+                    {label: 'Textura irregular', img: 'imagens/imagem14.jpg'},
+                    {label: 'Olheiras / Bolsas abaixo dos olhos', img: 'imagens/imagem15.jpg'},
+                    {label: 'Iniciar / Manter os cuidados com a pele', img: 'imagens/imagem17.jpg'}
+                ],
+                mista: [
+                    {label: 'Oleosidade/excesso de brilho', img: 'imagens/imagem3.jpg'},
+                    {label: 'Rugas / Linhas de expressão / Flacidez do rosto', img: 'imagens/imagem8.jpg'},
+                    {label: 'Manchas escuras / Melasma / Cicatrizes de acne', img: 'imagens/imagem10.jpg'},
+                    {label: 'Poros dilatados', img: 'imagens/imagem13.jpg'},
+                    {label: 'Textura irregular', img: 'imagens/imagem14.jpg'},
+                    {label: 'Olheiras / Bolsas abaixo dos olhos', img: 'imagens/imagem15.jpg'},
+                    {label: 'Iniciar / Manter os cuidados com a pele', img: 'imagens/imagem17.jpg'}
+                ],
+                sensivel: [
+                    {label: 'Rugas / Linhas de expressão / Flacidez do rosto', img: 'imagens/imagem8.jpg'},
+                    {label: 'Rosácea / Sensibilidade extrema / Irritação recorrente', img: 'imagens/imagem5.jpg'},
+                    {label: 'Manchas escuras / Melasma / Cicatrizes de acne', img: 'imagens/imagem10.jpg'},
+                    {label: 'Poros dilatados', img: 'imagens/imagem13.jpg'},
+                    {label: 'Textura irregular', img: 'imagens/imagem14.jpg'},
+                    {label: 'Olheiras / Bolsas abaixo dos olhos', img: 'imagens/imagem15.jpg'},
+                    {label: 'Iniciar / Manter os cuidados com a pele', img: 'imagens/imagem17.jpg'}
+                ]
             };
-            
-            let opcoesHTML = "";
-            desafios[tipoPele].forEach(desafio => {
-                opcoesHTML += `<div class='opcao'><label><input type='radio' name='desafio' value='${desafio}'> ${desafio}</label></div>`;
-            });
-            document.getElementById("opcoesDesafio").innerHTML = opcoesHTML;
+
+            if (tipoPele && desafios[tipoPele]) {
+                desafios[tipoPele].forEach(desafio => {
+                    opcoesDesafio.innerHTML += `
+                        <div class="opcao">
+                            <img src="${desafio.img}">
+                            <label><input type="radio" name="desafio" value="${desafio.label.toLowerCase().replace(/ /g, '_')}"> ${desafio.label}</label>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        function finalizar() {
+            const tipoPele = document.querySelector('input[name="pele"]:checked')?.value;
+            const desafio = document.querySelector('input[name="desafio"]:checked')?.value;
+
+            if (!tipoPele || !desafio) {
+                alert("Por favor, selecione um tipo de pele e um desafio antes de continuar.");
+                return;
+            }
+
+            // Mapeamento dos links de acordo com tipo de pele e desafio
+            const links = {
+                normal: {
+                    rugas: "c6fe5c94d07342",
+                    manchas: "ce024bba0a06f4",
+                    textura: "c9177722052e73",
+                    olheiras: "c099b95cfbc592",
+                    iniciar: "cb488123148ae3"
+                },
+                seca: {
+                    rugas: "c27058bf5435c0",
+                    manchas: "c576effffa9d44",
+                    textura: "c82c339b452790",
+                    olheiras: "c0da964a3bc0f3",
+                    iniciar: "ca00d8b5b4709f"
+                }
+            };
+
+            if (links[tipoPele] && links[tipoPele][desafio]) {
+                const link = links[tipoPele][desafio];
+
+                document.getElementById('Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade').innerHTML = `
+                    <button class="botao" onclick="window.location.href='https://www.bioage.com.br/professional/cart/create?code=${link}'">
+                        KIT SKINCARE PELE ${tipoPele.toUpperCase()}/${desafio.toUpperCase()}
+                    </button>
+                `;
+
+                mostrarTela(7);
+            } else {
+                alert("Nenhuma combinação encontrada. Verifique suas escolhas.");
+            }
         }
     </script>
 </body>
 </html>
+
