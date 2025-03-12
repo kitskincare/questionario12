@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -23,8 +23,6 @@
             border-radius: 10px;
             width: 80%;
             max-width: 500px;
-            max-height: 80vh; /* Limita a altura máxima da tela */
-            overflow-y: auto; /* Adiciona rolagem se o conteúdo exceder a altura */
         }
         h1, h2, p, label {
             font-size: 14px;
@@ -174,12 +172,12 @@ irritação, é sensível.</p>
 
             if (tipoPele && desafios[tipoPele]) {
                 desafios[tipoPele].forEach(desafio => {
-                    opcoesDesafio.innerHTML += `
+                    opcoesDesafio.innerHTML += 
                         <div class="opcao">
                             <img src="${desafio.img}">
                             <label><input type="radio" name="desafio" value="${desafio.label.toLowerCase().replace(/ /g, '_')}"> ${desafio.label}</label>
                         </div>
-                    `;
+                    ;
                 });
             }
         }
@@ -214,11 +212,11 @@ irritação, é sensível.</p>
             if (links[tipoPele] && links[tipoPele][desafio]) {
                 const link = links[tipoPele][desafio];
 
-                document.getElementById('Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade').innerHTML = `
+                document.getElementById('Preparamos um Kit Skincare Ideal para seu tipo de pele, clique abaixo e aproveite esta oportunidade').innerHTML = 
                     <button class="botao" onclick="window.location.href='https://www.bioage.com.br/professional/cart/create?code=${link}'">
                         KIT SKINCARE PELE ${tipoPele.toUpperCase()}/${desafio.toUpperCase()}
                     </button>
-                `;
+                ;
 
                 mostrarTela(7);
             } else {
@@ -228,5 +226,4 @@ irritação, é sensível.</p>
     </script>
 </body>
 </html>
-
 
